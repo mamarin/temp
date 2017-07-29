@@ -1,0 +1,48 @@
+ <form action="/action_page.php" id="form1">
+  First name: <input type="text" name="fname"><br>
+  <input type="submit" value="Submit">
+</form>
+
+Last name: <input type="text" name="lname" form="form1"> 
+------------------------------------------------------
+$query    =    "SELECT username, userid FROM user WHERE username = 'admin' ";
+$result    =    $conn->query($query);
+
+if (!$result) {
+  echo 'Could not run query: ' . mysql_error();
+  exit;
+}
+
+$arrayResult    =    mysql_fetch_array($result);
+
+//Now you can access $arrayResult like this
+
+$arrayResult['userid'];    // output will be userid which will be in database
+$arrayResult['username'];  // output will be admin
+
+//Note- userid and username will be column name of user table.
+-----------------------------------------------------------------
+<?php
+$result = mysql_query("SELECT id,email FROM people WHERE id = '42'");
+if (!$result) {
+    echo 'Could not run query: ' . mysql_error();
+    exit;
+}
+$row = mysql_fetch_row($result);
+
+echo $row[0]; // 42
+echo $row[1]; // the email value
+?>
+--------------------------------------------------------
+$query = "SELECT username,userid FROM user WHERE username = 'admin' ";
+$result=mysql_query($query);
+if (!$result){
+    die("BAD!");
+}
+if (mysql_num_rows($result)==1){
+    $row = mysql_fetch_array($result);
+    echo "user Id: " . $row['userid'];
+}
+else{
+    echo "not found!";
+}
