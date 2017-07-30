@@ -1,4 +1,20 @@
- <form action="/action_page.php" id="form1">
+var_dymp()
+print_r()
+nau41me
+phpinfo()
+
+$myArray=array('a','b', 'c')
+for ($i=0;$i<count($myArray);$i++){
+echo myArray[$i]. '<br>';
+}
+echo 'END'
+
+$myArray=array('a','b', 'c')
+foreach ($myArray as $val){
+echo $var.'<br>';
+}
+
+<form action="/action_page.php" id="form1">
   First name: <input type="text" name="fname"><br>
   <input type="submit" value="Submit">
 </form>
