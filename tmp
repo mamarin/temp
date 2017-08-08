@@ -5,12 +5,12 @@ In App:
 
 In Loader:
 
-privat static $namespace = array();
+privat static $namespace = array();  // key=namespace name, value=path
 
 public static function registerNamespace($namespace, $path){
   $namespace = trim($namespase);
   if (strlen($namespace) > 0){
-      if (!$path){
+      if (!$path){                            //  if variable is NOT new then real patth
           throw new \Exeption('Invalid path');
       }
       $_path = realpath($path);
