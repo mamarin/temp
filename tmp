@@ -7,6 +7,27 @@ In Loader:
 
 privat static $namespace = array();  // key=namespace name, value=path
 
+public static function loadClass($class) {
+      foreach (self::namespace as $k => $v) { //search array for class name (with namespace)
+          if (strpos($class, $k.'\\') === 0) {  //check class namespace ($class)is in the begining of the namespace ($k) -->  \MF\  not  \AAMF\
+                                                // endind with namespace separator '\\'
+               
+               echo $k.'<br>'.$v.'<br>'.$class; //namespace, path, class found 
+                
+                $file = str_replace{'\\' , DIRECTORY_SEPARATOR, $class);  //build path for .php from namespace and path                             
+                $file = substr_replace($f, $v, 0, strlen($k)).'.php'; 
+                $file = realpath($f);
+                if ($file && is_readable($file)) {
+                     include $file;
+                                       }
+                   else 
+                    { throw new \Exeption('File can not be included:'.$file);               
+                    }
+                 break;   
+            }
+      }
+ }
+
 public static function registerNamespace($namespace, $path){
   $namespace = trim($namespase);
   if (strlen($namespace) > 0){
