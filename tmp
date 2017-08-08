@@ -1,0 +1,25 @@
+In App:
+
+\MF\Loader::registerNamespace('MF', dirname(_FILE_).DIRECTORY_SEPARATOR); // real path of App.php
+
+
+In Loader:
+
+privat static $namespace = array();
+
+public static function registerNamespace($namespace, $path){
+  $namespace = trim($namespase);
+  if (strlen($namespace) > 0){
+      if (!$path){
+          throw new \Exeption('Invalid path');
+      }
+      $_path = realpath($path);
+      if ($_path && is_dir($_path) && is_readable($_path)){
+          self::$namespace[$namespace] = $_path . DIRECTORY_SEPARATOR;
+      } else {
+          throw new \Exeption('Namespace directory read error:' . $path);
+          {
+    } else {
+        throw new \Exeption('Invalid namespase:' . $namespace);
+        {
+ }
