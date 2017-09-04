@@ -1,0 +1,82 @@
+<?php echo //replace with// <?=
+---------------------------------------
+In HTML
+
+<?php foreach ($array as $key => $value): ?>
+
+<?= $key; ?> : <?= $value; ?>
+
+<?php ehdforeach; ?>
+----------------------------------------
+Sanitarization
+
+www.lkb.eu/?key=value
+
+$value = htmlspecialchars($_GET['key']);
+
+$uri = trim($_SERVER['REQUEST_URI'], '/');
+------------------------------------------
+
+If statement
+
+(condition ? action_if_true: action_if_false;)
+
+example
+
+(x > y? 'Passed the test' : 'Failed the test')
+
+-----------------------------------------------------
+EXECUTE expmple for prepared query with placeholders
+
+$statement ->execute(['name'=>'Joe', 'email'=>'joe@example.com']);
+---------------------------------------------------
+// FOR PREPARE QUERY
+// $parameters - pass an array of $_POST inputs
+
+   
+   $input = [
+ 
+         'name' => $_POST ['name'], // key = column name
+	 'email' => $_POST ['email'],
+	  ];
+
+  
+   function insert($table, $parameters){
+	  
+	  $insert = sprintf(
+   
+            'insert into %s (%s) values (%s)',
+            $table, 
+			implode(',', array_keys($parameters)), //column names
+			
+			':'.implode(',:', array_keys($parameters)) //plaseholders
+         );
+		 
+	return $insert;
+
+
+   try {
+        $statement = $this->BD->prepare($insert);
+        $statement->execute($input);// OR execute(implode($input)); // TO BE TESTED
+       } catch (Exeption $e){
+           die($e->getMessage());         //for testing
+          //die('Something went wrong'); //for production
+       }
+------------------------------------------------
+Autiload with COMPOSER
+
+1. Create composer.json:
+    {
+      "autoload":{
+          "classmap": [
+              "./"       //directory which contains classes to be loaded
+            ]
+      }
+    }
+
+2. CMD -> composer install
+
+3. in index.php --- require 'vendor/autoload.php';
+
+4. IF New Class is created run composer dump-autoload
+----------------------------------------------------
